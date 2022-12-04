@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+package proto;
+
+option go_package = "gRPC_jwt/users/proto";
+
+message ProtoUser {
+
+     string ProtoID = 1;
+     string ProtoName = 2;
+     string ProtoEmail = 3;
+     string ProtoPassword = 4;
+     string ProtoPhoneno = 5;
+     string ProtoAddress = 6;
+
+}
+
+message ProtoCreateRequest {
+    ProtoUser req = 1;
+}
+
+message ProtoCreateReponse {
+    ProtoUser res = 1;
+}
+
+message ProtoLoginRequest {
+    string ProtoEmail = 1;
+    string ProtoPassword = 2;
+}
+
+message ProtoLoginResponse {
+   string token = 1;
+}
+
+message ProtoGetRequest {
+}
+
+message ProtoGetResponse {
+    ProtoUser res = 1;
+}
+
+
+
+service UserService{
+    rpc CreateUser(ProtoCreateRequest) returns (ProtoCreateReponse);
+    rpc Login(ProtoLoginRequest) returns (ProtoLoginResponse);
+    rpc GetUser(ProtoGetRequest) returns (ProtoGetResponse);
+}
